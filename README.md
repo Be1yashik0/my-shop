@@ -53,5 +53,9 @@ export default tseslint.config({
 })
 ```
 
-npm run dev   
+```
+npm run dev
+```
+```
 json-server --watch public/data.json --port 3001
+```
