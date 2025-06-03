@@ -14,8 +14,21 @@ const productsSlice = createSlice({
         items: [],
         status: 'idle',
         error: null,
+        category: 'Все', // Добавляем состояние для категории
+        sortBy: 'default', // Добавляем состояние для сортировки
+        searchQuery: '', // Добавляем состояние для поискового запроса
     },
-    reducers: {},
+    reducers: {
+        setCategory: (state, action) => {
+            state.category = action.payload;
+        },
+        setSortBy: (state, action) => {
+            state.sortBy = action.payload;
+        },
+        setSearchQuery: (state, action) => {
+            state.searchQuery = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loadProducts.pending, (state) => {
@@ -27,8 +40,9 @@ const productsSlice = createSlice({
             })
             .addCase(loadProducts.rejected, (state, action) => {
                 state.status = 'failed';
-                    state.error = action.error.message;
+                state.error = action.error.message;
             });
     },
 });
+export const { setCategory, setSortBy, setSearchQuery } = productsSlice.actions;
 export default productsSlice.reducer;
